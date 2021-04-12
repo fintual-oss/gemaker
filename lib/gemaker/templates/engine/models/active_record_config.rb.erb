@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+module <%= config.gem_class %>
+  def self.table_name_prefix
+    '<%= config.gem_name %>_'
+  end
+end
