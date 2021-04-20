@@ -96,10 +96,6 @@ module Gemaker
           "engine/models/application_record.rb",
           "app/models/#{gem_name}/application_record.rb"
         )
-        copy_template(
-          "engine/models/active_record_config.rb",
-          "app/models/#{gem_name}/#{gem_name}.rb"
-        )
       end
 
       def add_mailer_related
