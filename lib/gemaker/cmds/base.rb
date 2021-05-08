@@ -83,7 +83,11 @@ module Gemaker
       end
 
       def get_template_path(file_path)
-        File.join(app_root_path, "lib", "gemaker", "templates", file_path)
+        File.join(templates_path, file_path)
+      end
+
+      def templates_path
+        File.expand_path("../../gemaker/templates", __dir__)
       end
 
       def gem_root_path
