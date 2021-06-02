@@ -25,11 +25,5 @@ module <%= config.gem_class %>
       require_relative "./errors"
       require_relative "./activeadmin_config"
     end
-
-    config.to_prepare do
-      Dir.glob(Engine.root.join("app", "extensions", "**", "*_ext.rb")).sort.each do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
-    end
   end
 end
