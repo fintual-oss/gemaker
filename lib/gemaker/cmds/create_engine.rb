@@ -117,7 +117,6 @@ module Gemaker
         add_empty_directory("app/services/#{gem_name}")
         add_empty_directory("app/commands/#{gem_name}")
         add_empty_directory("app/values/#{gem_name}")
-        add_empty_directory("app/extensions")
       end
     end
   end
