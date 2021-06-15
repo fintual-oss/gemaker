@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+PapertrailConfig.configure do |config|
+  config.non_versioned_models.push(*<%= config.gem_class %>::PaperTrailConfiguration::NON_VERSIONED_MODELS)
+end
