@@ -5,4 +5,5 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gemspec
 
-gem "papertrail_config", path: "../papertrail_config"
+papertrail_config_path = Dir.glob(File.join(__FILE__[/^.*engines/], "**", "papertrail_config"))[0]
+gem "papertrail_config", path: papertrail_config_path
