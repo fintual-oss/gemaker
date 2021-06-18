@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+module <%= config.gem_class %>
+  class PaperTrailConfiguration
+    include PapertrailConfig::ConfigurationConcern
+
+    NON_VERSIONED_MODELS = %w()
+  end
+end

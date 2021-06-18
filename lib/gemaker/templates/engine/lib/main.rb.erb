@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+require "papertrail_config"
 require "<%= config.gem_name %>/engine"
+require "<%= config.gem_name %>/paper_trail_configuration"
 
 module <%= config.gem_class %>
   extend self

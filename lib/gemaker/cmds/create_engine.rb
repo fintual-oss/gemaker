@@ -32,6 +32,8 @@ module Gemaker
 
       def add_lib_related
         extend_active_admin_config
+        extend_papertrail_engine_config
+        extend_paper_trail_gem_config
         add_engine_file
         add_errors_file
         add_main_file
@@ -71,6 +73,14 @@ module Gemaker
 
       def add_errors_file
         copy_template("engine/lib/errors.rb", "lib/#{gem_name}/errors.rb")
+      end
+
+      def extend_paper_trail_gem_config
+        copy_template("engine/lib/paper_trail_configuration.rb", "lib/#{gem_name}/paper_trail_configuration.rb")
+      end
+
+      def extend_papertrail_engine_config
+        copy_template("engine/lib/papertrail_config.rb", "lib/#{gem_name}/papertrail_config.rb")
       end
 
       def add_main_file
