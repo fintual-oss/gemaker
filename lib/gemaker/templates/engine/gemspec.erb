@@ -2,21 +2,19 @@
 
 $:.push File.expand_path("lib", __dir__)
 
-# Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
-  s.name          = "<%= config.gem_name %>"
-  s.version       = "0.1.0"
-  s.authors       = "Fintual"
-  s.email         = "devs@fintual.com"
-  s.summary       = "<%= config.summary %>"
-  s.description   = "<%= config.description %>"
+Gem::Specification.new do |spec|
+  spec.name = "<%= config.gem_name %>"
+  spec.version = "0.1.0"
+  spec.authors = "Fintual Devs"
+  spec.email = "devs@fintual.com"
+  spec.summary = "<%= config.summary %>"
+  spec.description = "<%= config.description %>"
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  s.metadata["allowed_push_host"] = "http://fintual.com"
+  spec.metadata["allowed_push_host"] = "https://www.fintual.com"
+  spec.metadata["homepage_uri"] = spec.homepage
 
-  s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]
+  spec.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]
 
-  s.add_dependency "power-types"
-  s.add_dependency "rails", "~> 6.0.3", ">= 6.0.3.6"
+  spec.add_dependency "power-types", "0.4.0"
+  spec.add_dependency "rails", "6.1.4"
 end
