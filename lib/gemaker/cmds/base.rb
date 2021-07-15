@@ -3,7 +3,7 @@
 module Gemaker
   module Cmds
     class Base < PowerTypes::Command.new(:config)
-      delegate :human_gem_name, :gem_name, :gem_directory, :gem_type,
+      delegate :human_gem_name, :gem_name, :gem_directory, :gem_type, :gem_category,
                to: :config, prefix: false, allow_nil: false
 
       def perform
