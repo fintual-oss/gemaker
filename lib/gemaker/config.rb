@@ -2,7 +2,7 @@
 
 module Gemaker
   class Config
-    attr_accessor :gem_name, :summary, :engine
+    attr_accessor :gem_name, :gem_category, :summary, :engine
     attr_writer :human_gem_name, :description
 
     def initialize

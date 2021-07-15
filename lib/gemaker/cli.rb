@@ -44,6 +44,10 @@ module Gemaker
       config.summary = ask("Ingresa un resumen de la gema (una oración):")
       config.description = ask("Ingresa la descripción de la gema (aquí esfuérzate un poco más):")
       config.engine = agree("La gema es es un engine? Contesta 'yes' si tu gema funcionará como una extensión de Rails. Es decir, si agregará o extenderá models, controllers, etc.")
+
+      if config.engine
+        config.gem_category = ask("Ingresa la categoría de este engine:")
+      end
     end
     # rubocop:enable Metrics/LineLength
 

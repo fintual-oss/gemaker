@@ -12,6 +12,8 @@ module Gemaker
         add_config_related
         add_lib_related
         add_root_related
+
+        move_to_category
       end
 
       def add_app_related
@@ -127,6 +129,11 @@ module Gemaker
         add_empty_directory("app/services/#{gem_name}")
         add_empty_directory("app/commands/#{gem_name}")
         add_empty_directory("app/values/#{gem_name}")
+      end
+
+      def move_to_category
+        execute("mkdir -p engines/#{gem_category}", "error creating category")
+        execute("mv engines/#{gem_name} engines/#{gem_category}/#{gem_name}", "error moving to category")
       end
     end
   end
