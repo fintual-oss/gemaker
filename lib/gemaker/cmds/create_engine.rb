@@ -56,7 +56,7 @@ module Gemaker
       end
 
       def add_gemfile
-        copy_file("engine/Gemfile", "Gemfile")
+        copy_template("engine/Gemfile", "Gemfile")
       end
 
       def add_rakefile
