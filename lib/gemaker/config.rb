@@ -36,5 +36,20 @@ module Gemaker
     def engine?
       !!engine
     end
+
+    def gem_path
+      return File.join(gem_directory, gem_name) unless gem_category
+
+      File.join(gem_directory, gem_category, gem_name)
+    end
+
+    def relative_path_to(path)
+      gem_root_path = File.join(Dir.pwd, gem_path)
+      gem_complete_path = Pathname.new(gem_root_path)
+      base_path = Pathname.new(gem_root_path[/^.*engines/])
+      relative_path = base_path.relative_path_from(gem_complete_path)
+
+      "#{relative_path}/#{path}"
+    end
   end
 end

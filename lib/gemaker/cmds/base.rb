@@ -91,7 +91,7 @@ module Gemaker
       end
 
       def gem_root_path
-        File.join(app_root_path, gem_directory, @config.gem_name)
+        File.join(app_root_path, @config.gem_path)
       end
 
       def app_root_path

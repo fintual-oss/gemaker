@@ -1,9 +1,0 @@
-# frozen_string_literal: true
-
-source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
-gemspec
-
-papertrail_config_path = Dir.glob(File.join(__FILE__[/^.*engines/], "**", "papertrail_config"))[0]
-gem "papertrail_config", path: papertrail_config_path

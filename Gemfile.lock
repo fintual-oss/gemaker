@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fintual-gemaker (0.1.0)
+    fintual-gemaker (0.1.2)
       activesupport
       artii
       colorize
@@ -12,7 +12,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.3.1)
+    activesupport (6.1.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -22,7 +22,7 @@ GEM
     colorize (0.8.1)
     commander (4.6.0)
       highline (~> 2.0.0)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     diff-lcs (1.4.4)
     highline (2.0.3)
     i18n (1.8.10)
@@ -58,4 +58,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.1.4
+   2.2.16
