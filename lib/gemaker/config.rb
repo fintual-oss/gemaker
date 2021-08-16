@@ -38,8 +38,6 @@ module Gemaker
     end
 
     def gem_path
-      return File.join(gem_directory, gem_name) unless gem_category
-
       File.join(gem_directory, gem_category, gem_name)
     end
 
