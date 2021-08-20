@@ -48,6 +48,7 @@ module Gemaker
       end
 
       def add_dummy_app_related
+        add_config_ru
         add_dummy_app_folder
         add_dummy_bin_folder
         add_dummy_public_folder
@@ -158,6 +159,10 @@ module Gemaker
 
       def add_rspec
         copy_file("engine/.rspec", ".rspec")
+      end
+
+      def add_config_ru
+        copy_file("engine/spec/dummy/config.ru", "spec/dummy/config.ru")
       end
 
       def add_dummy_app_folder
