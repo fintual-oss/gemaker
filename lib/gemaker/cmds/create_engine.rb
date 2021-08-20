@@ -44,6 +44,11 @@ module Gemaker
         add_example_spec
         add_rails_helper
         add_spec_helper
+        add_dummy_app_related
+      end
+
+      def add_dummy_app_related
+        add_dummy_app_folder
       end
 
       def add_root_related
@@ -151,6 +156,10 @@ module Gemaker
 
       def add_rspec
         copy_file("engine/.rspec", ".rspec")
+      end
+
+      def add_dummy_app_folder
+        copy_folder_recursevely("engine/spec/dummy/app", "spec/dummy/app")
       end
     end
   end

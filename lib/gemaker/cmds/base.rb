@@ -75,6 +75,11 @@ module Gemaker
         ::FileUtils.cp(get_template_path(source), get_destination_path(destination))
       end
 
+      def copy_folder_recursevely(source, destination)
+        info("Adding #{destination} folder and contents")
+        ::FileUtils.cp_r(get_template_path(source), get_destination_path(destination))
+      end
+
       def get_destination_path(destination, root_destination: false)
         base_path = root_destination ? app_root_path : gem_root_path
         destination_path = File.join(base_path, destination)
