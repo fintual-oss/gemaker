@@ -42,6 +42,7 @@ module Gemaker
 
       def add_spec_related
         add_rails_helper
+        add_spec_helper
       end
 
       def add_root_related
@@ -121,6 +122,10 @@ module Gemaker
 
       def add_rails_helper
         copy_file("engine/spec/rails_helper.rb", "spec/rails_helper.rb")
+      end
+
+      def add_spec_helper
+        copy_file("engine/spec/spec_helper.rb", "spec/spec_helper.rb")
       end
 
       def add_git_ignore
