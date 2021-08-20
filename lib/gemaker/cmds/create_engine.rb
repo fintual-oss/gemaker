@@ -61,6 +61,7 @@ module Gemaker
         add_dummy_config_environments
         add_dummy_config_initializers
         add_dummy_config_locales
+        add_dummy_config_application
       end
 
       def add_root_related
@@ -208,6 +209,13 @@ module Gemaker
         copy_folder_recursevely(
           "engine/spec/dummy/config/locales", 
           "spec/dummy/config/locales"
+        )
+      end
+
+      def add_dummy_config_application
+        copy_template(
+          "engine/spec/dummy/config/application.rb",
+          "spec/dummy/config/application.rb"
         )
       end
     end
