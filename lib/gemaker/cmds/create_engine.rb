@@ -59,6 +59,7 @@ module Gemaker
 
       def add_dummy_config_related
         add_dummy_config_environments
+        add_dummy_config_initializers
       end
 
       def add_root_related
@@ -192,6 +193,13 @@ module Gemaker
         copy_folder_recursevely(
           "engine/spec/dummy/config/environments", 
           "spec/dummy/config/environments"
+        )
+      end
+
+      def add_dummy_config_initializers
+        copy_folder_recursevely(
+          "engine/spec/dummy/config/initializers", 
+          "spec/dummy/config/initializers"
         )
       end
     end
