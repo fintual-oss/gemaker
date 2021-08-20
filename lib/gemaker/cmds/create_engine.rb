@@ -11,6 +11,7 @@ module Gemaker
         add_bin_related
         add_config_related
         add_lib_related
+        add_spec_related
         add_root_related
       end
 
@@ -37,6 +38,10 @@ module Gemaker
         add_engine_file
         add_errors_file
         add_main_file
+      end
+
+      def add_spec_related
+        add_rails_helper
       end
 
       def add_root_related
@@ -112,6 +117,10 @@ module Gemaker
 
       def add_main_file
         copy_template("engine/lib/main.rb", "lib/#{gem_name}.rb")
+      end
+
+      def add_rails_helper
+        copy_file("engine/spec/rails_helper.rb", "spec/rails_helper.rb")
       end
 
       def add_git_ignore
