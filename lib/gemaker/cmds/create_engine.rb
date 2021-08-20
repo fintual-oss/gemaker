@@ -45,6 +45,7 @@ module Gemaker
         add_gemfile
         add_rakefile
         add_readme
+        add_rspec
       end
 
       def add_git_ignore
@@ -61,6 +62,10 @@ module Gemaker
 
       def add_rakefile
         copy_template("engine/Rakefile", "Rakefile")
+      end
+
+      def add_rspec
+        copy_file("engine/.rspec", ".rspec")
       end
 
       def extend_active_admin_config
