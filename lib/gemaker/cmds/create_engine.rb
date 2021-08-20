@@ -23,11 +23,11 @@ module Gemaker
       end
 
       def add_bin_related
-        copy_template("engine/bin_rails", "bin/rails")
+        copy_template("engine/bin/rails", "bin/rails")
       end
 
       def add_config_related
-        copy_template("engine/routes.rb", "config/routes.rb")
+        copy_template("engine/config/routes.rb", "config/routes.rb")
       end
 
       def add_lib_related
@@ -89,28 +89,28 @@ module Gemaker
 
       def add_controllers_related
         copy_template(
-          "engine/application_controller.rb",
+          "engine/app/controllers/application_controller.rb",
           "app/controllers/#{gem_name}/application_controller.rb"
         )
       end
 
       def add_jobs_related
         copy_template(
-          "engine/application_job.rb",
+          "engine/app/jobs/application_job.rb",
           "app/jobs/#{gem_name}/application_job.rb"
         )
       end
 
       def add_models_related
         copy_template(
-          "engine/models/application_record.rb",
+          "engine/app/models/application_record.rb",
           "app/models/#{gem_name}/application_record.rb"
         )
       end
 
       def add_mailer_related
         copy_template(
-          "engine/application_mailer.rb",
+          "engine/app/mailers/application_mailer.rb",
           "app/mailers/#{gem_name}/application_mailer.rb"
         )
         add_empty_directory("app/views/#{gem_name}")
