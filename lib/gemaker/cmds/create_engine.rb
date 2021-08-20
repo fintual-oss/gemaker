@@ -48,11 +48,17 @@ module Gemaker
       end
 
       def add_dummy_app_related
+        add_dummy_config_related
+
         add_dummy_app_folder
         add_dummy_bin_folder
         add_dummy_config_ru
         add_dummy_public_folder
         add_dummy_rakefile
+      end
+
+      def add_dummy_config_related
+        add_dummy_config_environments
       end
 
       def add_root_related
@@ -180,6 +186,13 @@ module Gemaker
 
       def add_dummy_rakefile
         copy_file("engine/spec/dummy/config.ru", "spec/dummy/config.ru")
+      end
+
+      def add_dummy_config_environments
+        copy_folder_recursevely(
+          "engine/spec/dummy/config/environments", 
+          "spec/dummy/config/environments"
+        )
       end
     end
   end
