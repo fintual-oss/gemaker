@@ -48,10 +48,11 @@ module Gemaker
       end
 
       def add_dummy_app_related
-        add_config_ru
         add_dummy_app_folder
         add_dummy_bin_folder
+        add_dummy_config_ru
         add_dummy_public_folder
+        add_dummy_rakefile
       end
 
       def add_root_related
@@ -161,10 +162,6 @@ module Gemaker
         copy_file("engine/.rspec", ".rspec")
       end
 
-      def add_config_ru
-        copy_file("engine/spec/dummy/config.ru", "spec/dummy/config.ru")
-      end
-
       def add_dummy_app_folder
         copy_folder_recursevely("engine/spec/dummy/app", "spec/dummy/app")
       end
@@ -173,8 +170,16 @@ module Gemaker
         copy_folder_recursevely("engine/spec/dummy/bin", "spec/dummy/bin")
       end
 
+      def add_dummy_config_ru
+        copy_file("engine/spec/dummy/config.ru", "spec/dummy/config.ru")
+      end
+
       def add_dummy_public_folder
         copy_folder_recursevely("engine/spec/dummy/public", "spec/dummy/public")
+      end
+
+      def add_dummy_rakefile
+        copy_file("engine/spec/dummy/config.ru", "spec/dummy/config.ru")
       end
     end
   end
