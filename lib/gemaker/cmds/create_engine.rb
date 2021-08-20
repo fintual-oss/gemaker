@@ -50,6 +50,7 @@ module Gemaker
       def add_dummy_app_related
         add_dummy_app_folder
         add_dummy_bin_folder
+        add_dummy_public_folder
       end
 
       def add_root_related
@@ -165,6 +166,10 @@ module Gemaker
 
       def add_dummy_bin_folder
         copy_folder_recursevely("engine/spec/dummy/bin", "spec/dummy/bin")
+      end
+
+      def add_dummy_public_folder
+        copy_folder_recursevely("engine/spec/dummy/public", "spec/dummy/public")
       end
     end
   end
