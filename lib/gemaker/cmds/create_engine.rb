@@ -41,6 +41,7 @@ module Gemaker
       end
 
       def add_spec_related
+        add_example_spec
         add_rails_helper
         add_spec_helper
       end
@@ -118,6 +119,10 @@ module Gemaker
 
       def add_main_file
         copy_template("engine/lib/main.rb", "lib/#{gem_name}.rb")
+      end
+
+      def add_example_spec
+        copy_template("engine/spec/example_spec.rb", "spec/example_spec.rb")
       end
 
       def add_rails_helper
