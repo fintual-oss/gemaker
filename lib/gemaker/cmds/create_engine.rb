@@ -64,6 +64,7 @@ module Gemaker
         add_dummy_config_application
         add_dummy_config_boot
         add_dummy_config_cable
+        add_dummy_config_database
       end
 
       def add_root_related
@@ -232,6 +233,13 @@ module Gemaker
         copy_file(
           "engine/spec/dummy/config/cable.yml",
           "spec/dummy/config/cable.yml"
+        )
+      end
+
+      def add_dummy_config_database
+        copy_template(
+          "engine/spec/dummy/config/database.yml",
+          "spec/dummy/config/database.yml"
         )
       end
     end
