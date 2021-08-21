@@ -63,6 +63,7 @@ module Gemaker
         add_dummy_config_locales
         add_dummy_config_application
         add_dummy_config_boot
+        add_dummy_config_cable
       end
 
       def add_root_related
@@ -224,6 +225,13 @@ module Gemaker
         copy_file(
           "engine/spec/dummy/config/boot.rb",
           "spec/dummy/config/boot.rb"
+        )
+      end
+
+      def add_dummy_config_cable
+        copy_file(
+          "engine/spec/dummy/config/cable.yml",
+          "spec/dummy/config/cable.yml"
         )
       end
     end
