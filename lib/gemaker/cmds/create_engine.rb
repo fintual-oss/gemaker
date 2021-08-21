@@ -67,6 +67,7 @@ module Gemaker
         add_dummy_config_cable
         add_dummy_config_database
         add_dummy_config_environment
+        add_dummy_config_puma
       end
 
       def add_root_related
@@ -249,6 +250,13 @@ module Gemaker
         copy_file(
           "engine/spec/dummy/config/environment", 
           "spec/dummy/config/environment"
+        )
+      end
+
+      def add_dummy_config_puma
+        copy_file(
+          "engine/spec/dummy/config/puma", 
+          "spec/dummy/config/puma"
         )
       end
     end
