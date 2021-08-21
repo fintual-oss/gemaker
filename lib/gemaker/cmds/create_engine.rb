@@ -62,6 +62,7 @@ module Gemaker
         add_dummy_config_initializers
         add_dummy_config_locales
         add_dummy_config_application
+        add_dummy_config_boot
       end
 
       def add_root_related
@@ -216,6 +217,13 @@ module Gemaker
         copy_template(
           "engine/spec/dummy/config/application.rb",
           "spec/dummy/config/application.rb"
+        )
+      end
+
+      def add_dummy_config_boot
+        copy_file(
+          "engine/spec/dummy/config/boot.rb",
+          "spec/dummy/config/boot.rb"
         )
       end
     end
