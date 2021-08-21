@@ -61,10 +61,12 @@ module Gemaker
         add_dummy_config_environments
         add_dummy_config_initializers
         add_dummy_config_locales
+
         add_dummy_config_application
         add_dummy_config_boot
         add_dummy_config_cable
         add_dummy_config_database
+        add_dummy_config_environment
       end
 
       def add_root_related
@@ -240,6 +242,13 @@ module Gemaker
         copy_template(
           "engine/spec/dummy/config/database.yml",
           "spec/dummy/config/database.yml"
+        )
+      end
+
+      def add_dummy_config_environment
+        copy_file(
+          "engine/spec/dummy/config/environment", 
+          "spec/dummy/config/environment"
         )
       end
     end
