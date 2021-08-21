@@ -68,6 +68,7 @@ module Gemaker
         add_dummy_config_database
         add_dummy_config_environment
         add_dummy_config_puma
+        add_dummy_config_routes
       end
 
       def add_root_related
@@ -257,6 +258,13 @@ module Gemaker
         copy_file(
           "engine/spec/dummy/config/puma", 
           "spec/dummy/config/puma"
+        )
+      end
+
+      def add_dummy_config_routes
+        copy_template(
+          "engine/spec/dummy/config/routes.rb", 
+          "spec/dummy/config/routes.rb"
         )
       end
     end
