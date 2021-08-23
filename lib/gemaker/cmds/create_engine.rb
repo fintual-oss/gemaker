@@ -185,7 +185,7 @@ module Gemaker
       end
 
       def add_dummy_rakefile
-        copy_file("engine/spec/dummy/config.ru", "spec/dummy/config.ru")
+        copy_file("engine/spec/dummy/Rakefile", "spec/dummy/Rakefile")
       end
 
       def add_dummy_config_environments
@@ -239,15 +239,15 @@ module Gemaker
 
       def add_dummy_config_environment
         copy_file(
-          "engine/spec/dummy/config/environment", 
-          "spec/dummy/config/environment"
+          "engine/spec/dummy/config/environment.rb", 
+          "spec/dummy/config/environment.rb"
         )
       end
 
       def add_dummy_config_puma
         copy_file(
-          "engine/spec/dummy/config/puma", 
-          "spec/dummy/config/puma"
+          "engine/spec/dummy/config/puma.rb", 
+          "spec/dummy/config/puma.rb"
         )
       end
 
