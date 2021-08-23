@@ -7,7 +7,6 @@ module Gemaker
 
       def create_gem
         add_app_related
-        add_active_admin_related
         add_bin_related
         add_config_related
         add_lib_related
@@ -32,7 +31,6 @@ module Gemaker
       end
 
       def add_lib_related
-        extend_active_admin_config
         extend_papertrail_engine_config
         extend_paper_trail_gem_config
         add_engine_file
@@ -81,11 +79,6 @@ module Gemaker
         add_rspec
       end
 
-      def add_active_admin_related
-        add_empty_directory("admin")
-        add_empty_directory("app/views/admin")
-      end
-
       def add_app_empty_directories
         add_empty_directory("app/decorators/#{gem_name}")
         add_empty_directory("app/observers/#{gem_name}")
@@ -121,10 +114,6 @@ module Gemaker
           "engine/app/jobs/application_job.rb",
           "app/jobs/#{gem_name}/application_job.rb"
         )
-      end
-
-      def extend_active_admin_config
-        copy_template("engine/lib/activeadmin_config.rb", "lib/#{gem_name}/activeadmin_config.rb")
       end
 
       def extend_papertrail_engine_config
