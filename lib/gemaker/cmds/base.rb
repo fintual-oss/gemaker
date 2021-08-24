@@ -6,10 +6,13 @@ module Gemaker
       delegate :human_gem_name, :gem_name, :gem_directory, :gem_type, :gem_category,
                to: :config, prefix: false, allow_nil: false
 
+      CIRCLECI_CONFIG_YAML_PATH = ".circleci/config.yml"
+
       def perform
         show_creating_gem_msg
         create_gem
         add_initializer
+        add_to_circleci if circleci_integrated?
         execute_bundle
       end
 
@@ -111,6 +114,63 @@ module Gemaker
         return if string.blank?
 
         puts string.to_s.red
+      end
+
+      def add_to_circleci
+        info("Adding #{gem_type} to CircleCI config")
+
+        config_yaml = File.readlines CIRCLECI_CONFIG_YAML_PATH
+
+        new_entry_index = find_new_circleci_entry_index(config_yaml)
+        config_yaml.insert(new_entry_index, *new_circleci_entry)
+
+        File.open(CIRCLECI_CONFIG_YAML_PATH, "w+") do |file|
+          file.puts(config_yaml)
+        end
+      end
+
+      def find_new_circleci_entry_index(config_yaml)
+        specs_for_gem_type_job_index = find_specs_for_gem_type_job_index(config_yaml)
+        steps_index = find_steps_index(config_yaml, specs_for_gem_type_job_index)
+        find_end_of_steps_index(config_yaml, steps_index)
+      end
+
+      def find_specs_for_gem_type_job_index(config_yaml)
+        index = config_yaml.index("  #{gem_type}s_specs:\n")
+        raise "#{gem_type}s_specs not configured in CircleCI" if index.nil?
+        index
+      end
+
+      def find_steps_index(config_yaml, specs_for_gem_type_job_index)
+        config_yaml[specs_for_gem_type_job_index..].each_with_index do |line, index|
+          if line == "    steps:\n"
+            return index + specs_for_gem_type_job_index
+          end
+          raise "missing :steps entry in #{gem_type}s_specs, empty line found" if line == "\n"
+        end
+        raise "missing :steps entry in #{gem_type}s_specs, end of file reached"
+      end
+
+      def find_end_of_steps_index(config_yaml, steps_index)
+        config_yaml[steps_index..].each_with_index do |line, index|
+          if line == "\n"
+            return index + steps_index
+          end
+        end
+        raise "missing empty newline after #{gem_type}s_specs, end of file reached"
+      end
+
+      def new_circleci_entry
+        [
+          "      - run_#{gem_type}_specs:\n",
+          "          path: #{gem_type}s/#{gem_category}/#{gem_name}\n"
+        ]
+      end
+
+      def circleci_integrated?
+        config_found = File.exist?(CIRCLECI_CONFIG_YAML_PATH)
+        info("CircleCI configuration found!") if config_found
+        config_found
       end
     end
   end
