@@ -62,12 +62,9 @@ module Gemaker
 
         add_dummy_config_application
         add_dummy_config_boot
-        add_dummy_config_cable
         add_dummy_config_database
         add_dummy_config_environment
-        add_dummy_config_puma
         add_dummy_config_routes
-        add_dummy_config_storage
       end
 
       def add_root_related
@@ -223,13 +220,6 @@ module Gemaker
         )
       end
 
-      def add_dummy_config_cable
-        copy_file(
-          "engine/spec/dummy/config/cable.yml",
-          "spec/dummy/config/cable.yml"
-        )
-      end
-
       def add_dummy_config_database
         copy_template(
           "engine/spec/dummy/config/database.yml",
@@ -244,24 +234,10 @@ module Gemaker
         )
       end
 
-      def add_dummy_config_puma
-        copy_file(
-          "engine/spec/dummy/config/puma.rb", 
-          "spec/dummy/config/puma.rb"
-        )
-      end
-
       def add_dummy_config_routes
         copy_template(
           "engine/spec/dummy/config/routes.rb", 
           "spec/dummy/config/routes.rb"
-        )
-      end
-
-      def add_dummy_config_storage
-        copy_file(
-          "engine/spec/dummy/config/storage.yml", 
-          "spec/dummy/config/storage.yml"
         )
       end
     end
