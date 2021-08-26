@@ -2,18 +2,10 @@
 
 require "active_support"
 require "shoulda/matchers"
-require "timecop"
-require "../../../../architecture/papertrail_config/spec/support/shared_examples/versioned_model.rb"
+require "../../architecture/papertrail_config/spec/support/shared_examples/versioned_model"
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].sort.each do |f|
   require f
-end
-
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
 end
 
 RSpec.configure do |config|
