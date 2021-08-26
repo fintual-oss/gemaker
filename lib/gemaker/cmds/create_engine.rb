@@ -58,7 +58,6 @@ module Gemaker
       def add_dummy_config_related
         add_dummy_config_environments
         add_dummy_config_initializers
-        add_dummy_config_locales
 
         add_dummy_config_application
         add_dummy_config_boot
@@ -196,13 +195,6 @@ module Gemaker
         copy_folder_recursevely(
           "engine/spec/dummy/config/initializers", 
           "spec/dummy/config/initializers"
-        )
-      end
-
-      def add_dummy_config_locales
-        copy_folder_recursevely(
-          "engine/spec/dummy/config/locales", 
-          "spec/dummy/config/locales"
         )
       end
 
