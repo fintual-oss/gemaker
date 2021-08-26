@@ -130,34 +130,9 @@ module Gemaker
       end
 
       def find_new_circleci_entry_index(config_yaml)
-        specs_for_gem_type_job_index = find_specs_for_gem_type_job_index(config_yaml)
-        steps_index = find_steps_index(config_yaml, specs_for_gem_type_job_index)
-        find_end_of_steps_index(config_yaml, steps_index)
-      end
-
-      def find_specs_for_gem_type_job_index(config_yaml)
-        index = config_yaml.index("  #{gem_type}s_specs:\n")
-        raise "#{gem_type}s_specs not configured in CircleCI" if index.nil?
+        index = 1 + config_yaml.index("      # #{gem_type}s_specs_list_reference_for_gemaker\n")
+        raise "Magic comment for #{gem_type}s specs not found in CircleCI's config" if index.nil?
         index
-      end
-
-      def find_steps_index(config_yaml, specs_for_gem_type_job_index)
-        config_yaml[specs_for_gem_type_job_index..].each_with_index do |line, index|
-          if line == "    steps:\n"
-            return index + specs_for_gem_type_job_index
-          end
-          raise "missing :steps entry in #{gem_type}s_specs, empty line found" if line == "\n"
-        end
-        raise "missing :steps entry in #{gem_type}s_specs, end of file reached"
-      end
-
-      def find_end_of_steps_index(config_yaml, steps_index)
-        config_yaml[steps_index..].each_with_index do |line, index|
-          if line == "\n"
-            return index + steps_index
-          end
-        end
-        raise "missing empty newline after #{gem_type}s_specs, end of file reached"
       end
 
       def new_circleci_entry
