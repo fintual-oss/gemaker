@@ -1,0 +1,19 @@
+development: &default
+  adapter: postgresql
+  database: <%= config.gem_name %>_development
+  encoding: utf8
+  host: <%%= ENV["POSTGRESQL_HOST"] || "127.0.0.1" %>
+  port: <%%= ENV["POSTGRESQL_PORT"] || 5432 %>
+  username: <%%= ENV["POSTGRESQL_USER"] %>
+  min_messages: warning
+  pool: <%%= Integer(ENV.fetch("DB_POOL", 5)) %>
+  reaping_frequency: <%%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
+  timeout: 5000
+
+test:
+  <<: *default
+  database: <%= config.gem_name %>_test
+
+production:
+  <<: *default
+  database: <%= config.gem_name %>_production

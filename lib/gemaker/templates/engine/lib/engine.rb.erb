@@ -23,7 +23,6 @@ module <%= config.gem_class %>
 
     initializer "initialize" do
       require_relative "./errors"
-      require_relative "./activeadmin_config"
       require_relative "./papertrail_config"
     end
   end

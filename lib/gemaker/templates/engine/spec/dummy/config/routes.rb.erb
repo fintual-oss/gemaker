@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+Rails.application.routes.draw do
+  mount <%= config.gem_class %>::Engine => "/<%= config.gem_name %>"
+end
