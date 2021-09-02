@@ -21,6 +21,12 @@ module <%= config.gem_class %>
       end
     end
 
+    initializer "model_core.factories", after: "factory_bot.set_factory_paths" do
+      if defined?(FactoryBot)
+        FactoryBot.definition_file_paths << File.expand_path('../../spec/factories', __dir__)
+      end
+    end
+
     initializer "initialize" do
       require_relative "./errors"
       require_relative "./papertrail_config"
