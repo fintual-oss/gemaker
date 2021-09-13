@@ -6,10 +6,13 @@ module Gemaker
       delegate :human_gem_name, :gem_name, :gem_directory, :gem_type, :gem_category,
                to: :config, prefix: false, allow_nil: false
 
+      CIRCLECI_CONFIG_YAML_PATH = ".circleci/config.yml"
+
       def perform
         show_creating_gem_msg
         create_gem
         add_initializer
+        add_to_circleci if circleci_integrated?
         execute_bundle
       end
 
@@ -111,6 +114,38 @@ module Gemaker
         return if string.blank?
 
         puts string.to_s.red
+      end
+
+      def add_to_circleci
+        info("Adding #{gem_type} to CircleCI config")
+
+        config_yaml = File.readlines CIRCLECI_CONFIG_YAML_PATH
+
+        new_entry_index = find_new_circleci_entry_index(config_yaml)
+        config_yaml.insert(new_entry_index, *new_circleci_entry)
+
+        File.open(CIRCLECI_CONFIG_YAML_PATH, "w+") do |file|
+          file.puts(config_yaml)
+        end
+      end
+
+      def find_new_circleci_entry_index(config_yaml)
+        index = 1 + config_yaml.index("      # #{gem_type}s_specs_list_reference_for_gemaker\n")
+        raise "Magic comment for #{gem_type}s specs not found in CircleCI's config" if index.nil?
+        index
+      end
+
+      def new_circleci_entry
+        [
+          "      - run_#{gem_type}_specs:\n",
+          "          path: #{gem_type}s/#{gem_category}/#{gem_name}\n"
+        ]
+      end
+
+      def circleci_integrated?
+        config_found = File.exist?(CIRCLECI_CONFIG_YAML_PATH)
+        info("CircleCI configuration found!") if config_found
+        config_found
       end
     end
   end
