@@ -23,7 +23,7 @@ module Gemaker
       end
 
       def add_bin_related
-        copy_template("engine/bin/rails", "bin/rails")
+        copy_template("engine/bin/rails", "bin/rails", executable: true)
       end
 
       def add_config_related

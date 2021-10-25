@@ -51,9 +51,9 @@ module Gemaker
         error(error_message) if $?.exitstatus != 0
       end
 
-      def copy_template(source, destination, root_destination: false)
+      def copy_template(source, destination, root_destination: false, executable: false)
         info("Adding #{destination}")
-        template_path = get_template_path(source) + ".erb"
+        template_path = "#{get_template_path(source)}.erb"
         destination_path = get_destination_path(destination, root_destination: root_destination)
 
         input = File.open(template_path)
@@ -61,6 +61,7 @@ module Gemaker
         output.write(parse_erb(input.read, config: config))
         output.close
         input.close
+        File.chmod(0o744, destination_path) if executable
       end
 
       def parse_erb(content, data)
