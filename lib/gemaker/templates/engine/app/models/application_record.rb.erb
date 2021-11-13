@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module <%= config.gem_class %>
-  class ApplicationRecord < ActiveRecord::Base
+  class ApplicationRecord < FintualActiveRecord::Base
     include PapertrailConfig::ApplicationRecordConcern
 
     self.abstract_class = true
