@@ -71,10 +71,6 @@ module Gemaker
         ERB.new(content, nil, "-").result(b)
       end
 
-      def add_empty_directory(path)
-        copy_file("shared/.gitkeep", "#{path}/.gitkeep")
-      end
-
       def copy_file(source, destination)
         info("Adding #{destination}")
         ::FileUtils.cp(get_template_path(source), get_destination_path(destination))
