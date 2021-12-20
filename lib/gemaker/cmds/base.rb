@@ -43,6 +43,7 @@ module Gemaker
       end
 
       def execute_bundle
+        execute("bundle config force_ruby_platform true --local", "error setting ruby platform")
         execute("bundle install", "error running bundle install")
       end
 
