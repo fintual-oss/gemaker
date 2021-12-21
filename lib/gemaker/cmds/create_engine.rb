@@ -15,7 +15,6 @@ module Gemaker
       end
 
       def add_app_related
-        add_app_empty_directories
         add_mailer_related
         add_models_related
         add_controllers_related
@@ -75,20 +74,11 @@ module Gemaker
         add_rspec
       end
 
-      def add_app_empty_directories
-        add_empty_directory("app/decorators/#{gem_name}")
-        add_empty_directory("app/observers/#{gem_name}")
-        add_empty_directory("app/services/#{gem_name}")
-        add_empty_directory("app/commands/#{gem_name}")
-        add_empty_directory("app/values/#{gem_name}")
-      end
-
       def add_mailer_related
         copy_template(
           "engine/app/mailers/application_mailer.rb",
           "app/mailers/#{gem_name}/application_mailer.rb"
         )
-        add_empty_directory("app/views/#{gem_name}")
       end
 
       def add_models_related
