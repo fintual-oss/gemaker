@@ -14,6 +14,7 @@ module Gemaker
         add_initializer
         add_to_circleci if circleci_integrated?
         execute_bundle
+        execute_gem_bundle
       end
 
       private
@@ -48,6 +49,25 @@ module Gemaker
 
       def execute(cmd, error_message = nil)
         system cmd
+        error(error_message) if $?.exitstatus != 0
+      end
+
+      def execute_gem_bundle
+        execute_within_gem(
+          "bundle config force_ruby_platform true --local",
+          "error setting ruby platform"
+        )
+        execute_within_gem(
+          "bundle install",
+          "error running bundle install"
+        )
+      end
+
+      def execute_within_gem(cmd, error_message = nil)
+        Bundler.with_unbundled_env do
+          system "(cd #{gem_root_path} && #{cmd})"
+        end
+
         error(error_message) if $?.exitstatus != 0
       end
 
