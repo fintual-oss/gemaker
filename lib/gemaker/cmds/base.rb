@@ -64,10 +64,10 @@ module Gemaker
       end
 
       def execute_within_gem(cmd, error_message = nil)
-        cmd = "(cd #{gem_root_path} && #{cmd})"
         Bundler.with_unbundled_env do
-          system cmd
+          system "(cd #{gem_root_path} && #{cmd})"
         end
+
         error(error_message) if $?.exitstatus != 0
       end
 
