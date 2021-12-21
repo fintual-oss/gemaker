@@ -15,7 +15,6 @@ module Gemaker
       end
 
       def add_app_related
-        add_app_empty_directories
         add_mailer_related
         add_models_related
         add_controllers_related
