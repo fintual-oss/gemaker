@@ -1,3 +1,9 @@
+# Warning ⚠️
+Gemaker evolucionó mucho al caso particular de Fintual y tomamos la decisión de mantener una versión interna únicamente.
+Este proyecto está disponible como read-only para fines históricos.
+
+Para una versión mantenida puedes revisar https://github.com/platanus/gemaker.
+
 # Gemaker
 
 Es una gema de Ruby que permite generar gemas/engines dentro de un proyecto Rails con el fin de modularizar tu aplicación.
